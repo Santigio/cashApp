@@ -1,41 +1,52 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:flutter_svg/flutter_svg.dart';
+import 'package:splashscreen/splashscreen.dart';
+import 'dart:async';
 
-void main() => runApp(MyApp());
+import 'src/ui/money_transfer_main_page.dart';
+import 'src/ui/register_screen.dart';
 
-class MyApp extends StatelessWidget {
-  // This widget is the root of your application.
+void main() {
+  runApp(GetMaterialApp(
+    home: SplashScreenPage(),
+    debugShowCheckedModeBanner: false,
+  ));
+}
+
+class SplashScreenPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      // Application name
-      title: 'Flutter Hello World',
-      // Application theme data, you can set the colors for the application as
-      // you want
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
+    return Scaffold(
+      body: Center(
+        child: Container(
+          padding: EdgeInsets.symmetric(
+              vertical: 10), // adjust the vertical padding here
+          child: SplashScreen(
+            seconds: 15,
+            navigateAfterSeconds: RegisterPage(),
+            backgroundColor: Colors.white,
+            title: Text(
+              'FinMate',
+              textScaleFactor: 2,
+            ),
+            image: Image.network('https://i.ibb.co/MB92Gb0/unnamed.png'),
+            photoSize: 50.0,
+            loaderColor: Colors.red,
+          ),
+        ),
       ),
-      // A widget which will be started on application startup
-      home: MyHomePage(title: 'Flutter Demo Home Page'),
     );
   }
 }
 
-class MyHomePage extends StatelessWidget {
-  final String title;
-  const MyHomePage({Key? key, required this.title}) : super(key: key);
+class MoneyTransferApp extends StatelessWidget {
+  const MoneyTransferApp({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        // The title text which will be shown on the action bar
-        title: Text(title),
-      ),
-      body: Center(
-        child: Text(
-          'Hello, World!',
-        ),
-      ),
+    return MaterialApp(
+      home: MoneyTransferMainPage(),
     );
   }
 }
