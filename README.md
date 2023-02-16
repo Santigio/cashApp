@@ -1,2 +1,2 @@
-# cash afribank
+# FinMate cash app
 
